@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
     if (caFile.exists()) {
         // test CA
         qDebug() << "found CA certificate" << caFile.fileName();
-        Q_ASSERT(caFile.open(QIODevice::ReadOnly));
+        caFile.open(QIODevice::ReadOnly);
 
         QSslCertificate ca(&caFile, QSsl::Pem);
         sslCaCert = ca;
@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
     if (certFile.exists()) {
         // test client cert
         qDebug() << "found client certificate" << certFile.fileName();
-        Q_ASSERT(certFile.open(QIODevice::ReadOnly));
+        certFile.open(QIODevice::ReadOnly);
 
         QSslCertificate cert(&certFile, QSsl::Pem);
         qDebug() << "cert file not empty" << !cert.isNull();
@@ -93,7 +93,7 @@ int main(int argc, char *argv[])
         if (keyFile.exists()) {
             // test client key
             qDebug() << "found client key" << keyFile.fileName();
-            Q_ASSERT(keyFile.open(QIODevice::ReadOnly));
+            keyFile.open(QIODevice::ReadOnly);
             const QSslKey key(&keyFile, QSsl::Rsa);
             sslClientKey = key;
 
